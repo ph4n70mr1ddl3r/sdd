@@ -1,50 +1,138 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+=====================================
+Version Change: [TEMPLATE] → 1.0.0
+Version Bump Type: INITIAL RATIFICATION (MINOR from implicit unversioned state)
+
+Modified Principles:
+- PRINCIPLE_1_NAME → "Code Quality & Maintainability"
+- PRINCIPLE_2_NAME → "Rigorous Testing Standards"
+- PRINCIPLE_3_NAME → "User Experience Consistency"
+
+Added Sections:
+- Quality Assurance section (governance-level quality gates)
+- Governance section (amendment procedure, compliance review)
+
+Removed Sections:
+- PRINCIPLE_4_NAME (Integration Testing moved to Testing Standards)
+- PRINCIPLE_5_NAME (consolidation)
+- SECTION_2_NAME, SECTION_3_NAME (replaced with focused sections)
+
+Templates Updated:
+- ✅ plan-template.md: Constitution Check section aligns with 3 principles
+- ✅ spec-template.md: Requirements align with code quality + testing focus
+- ✅ tasks-template.md: Task phases include quality and testing gates
+- ✅ No breaking changes to command files required
+
+Deferred Items:
+- None (all values defined)
+
+=============================================== -->
+
+# SDD Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality & Maintainability
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every feature and refactoring MUST maintain or improve code quality standards.
+Non-negotiable requirements:
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- Code MUST pass linting and formatting checks before commit
+- Code MUST have clear, descriptive variable and function names (no single-letter vars except loop counters)
+- Complex logic MUST be documented with inline comments explaining the "why", not just the "what"
+- Code MUST avoid duplication; similar patterns MUST be extracted to shared utilities
+- Functions MUST be reasonably scoped (single responsibility principle); split if >50 lines
+- Types/interfaces MUST be explicitly defined; implicit types allowed only in trivial cases (e.g., loop counters)
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Quality code is maintainable code. High quality reduces future bugs, makes onboarding faster, and enables confident refactoring. Consistency across the codebase reduces cognitive load for all developers.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+---
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### II. Rigorous Testing Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Every feature, bug fix, and non-trivial refactor MUST have corresponding tests.
+Non-negotiable requirements:
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- Unit tests MUST cover core business logic and error paths (aim for >80% coverage)
+- Integration tests MUST verify component interactions and end-to-end workflows
+- Contract/API tests MUST validate contracts between services/modules before implementation
+- Tests MUST be written FIRST (Test-Driven Development); implementation follows failing tests
+- Tests MUST be isolated (no shared state between tests) and deterministic (same input → same output)
+- Tests MUST be independently runnable and fast (<100ms for unit, <1s for integration)
+- Test failure messages MUST be descriptive (explain what was expected vs. what happened)
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: Tests are the executable specification. Writing tests first clarifies requirements and design. Testing all paths (happy + error cases) prevents regressions and gives confidence in refactoring. Fast tests encourage frequent local validation before push.
+
+---
+
+### III. User Experience Consistency
+
+Every feature that touches the user interface, API, or command-line interface MUST maintain consistency.
+Non-negotiable requirements:
+
+- Terminology MUST be consistent across all interfaces (docs, UI, API errors); use a shared glossary if needed
+- Error messages MUST be actionable (explain what went wrong and how to fix it, not just error codes)
+- UI/API responses MUST follow established patterns for structure and naming (no ad-hoc formats)
+- Workflows MUST be intuitive and predictable (same action in similar contexts should behave the same way)
+- Deprecations MUST be communicated in advance with migration guidance; breaking changes require a major version bump
+- Accessibility MUST be considered (readability, keyboard navigation for CLI, semantic HTML for web)
+
+**Rationale**: Consistent user experience builds trust and reduces friction. Users spend less time figuring out how to use the system. Predictable behavior reduces support burden and increases adoption.
+
+---
+
+## Quality Assurance
+
+### Testing Gate (Pre-Merge)
+
+All code MUST pass before merging:
+
+- All tests (unit, integration, contract) MUST pass
+- Code coverage MUST meet minimum thresholds (unit: >80%, integration: >60%)
+- Linting and formatting checks MUST pass
+- Code review MUST verify compliance with all three core principles
+
+### Design Review Gate (Pre-Implementation)
+
+Before starting implementation:
+
+- Specification document MUST clearly define user stories, acceptance criteria, and success metrics
+- Design MUST be reviewed against all three principles:
+  - **Code Quality**: Are patterns maintainable? Is the design over-engineered?
+  - **Testing**: Can each user story be tested independently? Are test scenarios clear?
+  - **User Experience**: Is the workflow consistent? Are error paths handled gracefully?
+- If a design violates a principle, justification MUST be documented (complexity tracking)
+
+---
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Amendment Procedure
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Constitution amendments MUST follow this process:
+
+1. **Proposal**: Amend constitution document and create pull request with rationale
+2. **Review**: At least one maintainer reviews for clarity, consistency, and feasibility
+3. **Approval**: Changes approved before merge
+4. **Version Bump**: Increment version per semantic versioning rules (see below)
+5. **Communication**: Major changes announced to team; rationale documented in commit message
+
+### Versioning Policy
+
+Constitution uses semantic versioning:
+
+- **MAJOR**: Backward-incompatible governance changes (e.g., removing a principle, redefining a core requirement that breaks existing work)
+- **MINOR**: Substantive additions or expansions (e.g., adding a new principle, significantly expanding existing guidance)
+- **PATCH**: Clarifications, rewordings, typo fixes, or non-semantic refinements that don't change intent
+
+### Compliance Review
+
+- All pull requests MUST cite which principle(s) they address
+- During code review, maintainers verify alignment with principles; deviations require explicit justification
+- Quarterly review: Team assesses whether principles are practical; backlog adjustments if needed
+
+**Baseline Expectation**: Constitution supersedes other practices. If a practice or pattern conflicts with the constitution, the constitution wins; that practice must be justified in complexity tracking or constitution must be amended.
+
+---
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-09 | **Last Amended**: 2025-12-09
