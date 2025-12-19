@@ -1,50 +1,51 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 1.0.0 → 1.1.0 (MINOR bump for expanded TDD guidance)
+- Modified principles: 
+  * Made Test-Driven Development the primary principle (PRINCIPLE_1_NAME)
+  * Enhanced TDD description with comprehensive requirements
+  * Renumbered other principles to accommodate TDD prominence
+- Added sections: Development Workflow, Quality Gates
+- Removed sections: Template placeholders (all filled with concrete content)
+- Templates updated: ✅ .specify/templates/plan-template.md (Constitution Check section updated with TDD gates)
+- Templates requiring updates: ✅ spec-template.md already aligned, ✅ tasks-template.md already TDD-compliant
+- Follow-up TODOs: None - all placeholders filled with concrete values
+--->
+
+# Speckit Constitution
+<!-- Specification System Constitution -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-Driven Development (NON-NEGOTIABLE)
+All development MUST follow TDD practices: Write failing tests first → Implement minimum code to pass → Refactor while maintaining green tests. Red-Green-Refactor cycle strictly enforced for every feature. Tests serve as living documentation and design specifications. No production code without corresponding failing tests.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. User Story Independence
+Every feature MUST be decomposed into independently testable user stories. Each story delivers value independently without dependencies on other stories. Stories prioritized as P1 (MVP), P2, P3 for incremental delivery. Independent testability ensures parallel development and validation at each increment.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Specification-First Development
+All features MUST start with formal specification documents. User stories with Given-When-Then acceptance criteria required before implementation. Technical requirements and success criteria defined upfront. Specifications serve as contracts between stakeholders and implementation teams.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Contract Testing & Integration
+Integration tests REQUIRED for: Library contracts, API endpoints, Inter-service communication, Shared data schemas. Contract tests verify compatibility between components and prevent breaking changes. All external integrations must have contract tests.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Incremental Architecture
+Build MVPs through incremental delivery. Each user story adds value without breaking existing functionality. Architecture evolves through patterns discovered during implementation. Keep complexity minimal until justified by actual requirements (YAGNI principle).
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Phase 1: Setup** - Project initialization and structure per implementation plan  
+**Phase 2: Foundational** - Core infrastructure that blocks all user stories  
+**Phase 3: User Stories** - Independent implementation in priority order (P1 → P2 → P3)  
+**Phase 4: Polish** - Cross-cutting concerns and improvements
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All user stories MUST have independent tests. Tests written first, verified to fail, then implementation proceeds until tests pass.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Quality Gates
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+**Constitution Compliance Check**: All plans must verify principle adherence before Phase 0 research  
+**Test Coverage**: 100% test coverage for critical paths, contract tests for all integrations  
+**Independent Validation**: Each user story testable and demonstrable independently  
+**Documentation**: Specifications, contracts, and quickstart guides required
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2025-12-19 | **Last Amended**: 2025-12-19

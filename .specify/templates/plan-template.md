@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**TDD Compliance**: All features MUST follow Test-Driven Development - failing tests written first, minimum implementation to pass, then refactor
+**User Story Independence**: Each story delivers value independently, testable without other stories
+**Specification-First**: Formal specs with Given-When-Then acceptance criteria required before implementation
+**Contract Testing**: Integration tests planned for library contracts, APIs, and inter-service communication
 
 ## Project Structure
 
