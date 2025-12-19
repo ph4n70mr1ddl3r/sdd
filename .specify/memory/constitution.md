@@ -1,50 +1,43 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Speckit Constitution
+<!-- Speckit Development Guidelines for OpenCode AI Plugin -->
+
+<!-- Sync Impact Report
+Version change: Initial → 1.0.0
+List of modified principles: N/A (new constitution)
+Added sections: Core Principles (5), Development Workflow, Quality Standards, Governance
+Removed sections: N/A
+Templates requiring updates: ✅ All templates reference constitution principles
+Follow-up TODOs: None
+-->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-Driven Development (NON-NEGOTIABLE)
+All development MUST follow TDD methodology: Tests written first → User approved → Tests fail → Then implement. Red-Green-Refactor cycle strictly enforced. No production code without failing test. Rationale: Ensures reliability, prevents regressions, and maintains high code quality.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Specification-First Development
+Every feature MUST begin with a specification document before any implementation. Specifications include user stories, acceptance criteria, and success metrics. Rationale: Prevents scope creep and ensures user-centric development.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Task-Driven Implementation
+Development MUST be broken into independent, testable tasks organized by user story. Each task delivers verifiable value independently. Rationale: Enables parallel development and incremental delivery of working software.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Continuous Validation
+All code changes MUST pass automated tests before integration. Contract tests required for APIs, integration tests for workflows, unit tests for functions. Rationale: Maintains system stability and prevents broken dependencies.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Incremental Delivery
+Features MUST be delivered in smallest valuable increments. Each increment must be independently testable and deployable. Rationale: Reduces risk, enables faster feedback, and maintains development momentum.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
+<!-- Speckit command sequence for feature development -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Speckit enforces the following workflow sequence: `speckit.specify` → `speckit.plan` → `speckit.tasks` → `speckit.implement` → `speckit.checklist`. Each phase builds upon the previous and includes validation gates. Rationale: Standardized workflow ensures consistency and quality across all features.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality Standards
+<!-- Testing and validation requirements -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+All features MUST include: User story testing with acceptance criteria, contract testing for interfaces, integration testing for workflows, and continuous validation through automated tests. Quality gates enforced at each workflow phase. Rationale: Comprehensive testing ensures reliable, maintainable software delivery.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+All development practices MUST comply with this constitution. Amendments require documentation of changes, impact analysis, and team approval. Constitution compliance verified in all PR reviews. Rationale: Ensures consistent application of principles and continuous improvement of development practices.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-19 | **Last Amended**: 2025-12-19

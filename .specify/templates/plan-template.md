@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**TDD Compliance**: All user stories MUST have tests written before implementation begins
+**Specification Completeness**: Feature spec MUST include user stories with acceptance criteria before planning
+**Task Independence**: Tasks MUST be organized to enable independent testing and delivery
+**Quality Gates**: Implementation MUST pass contract, integration, and unit tests before completion
 
 ## Project Structure
 
